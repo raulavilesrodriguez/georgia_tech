@@ -52,29 +52,7 @@ public class Frog extends Pond {
     }
 
     public void grow(){
-        age += 1;
-        if(age < 12){
-            int res1 = Math.abs(12 - age);
-            for (int i = 0; i <res1; i++){
-                tongueSpeed += 1;
-            }
-        } else if (age == 30){
-            if(tongueSpeed > 5.0){
-                tongueSpeed -= 1;
-            }
-        } else if (age > 30){
-            int res2 = Math.abs(30 - age);
-            for (int i = 0; i <res2; i++){
-                if(tongueSpeed > 5.0){
-                    tongueSpeed -= 1;
-                }
-            }
-        }
-        if(age > 1 && age < 7){
-            this.isFroglet = true;
-        } else {
-            this.isFroglet = false;
-        }
+        grow(1);
     }
 
     public void eat(Fly fly){
