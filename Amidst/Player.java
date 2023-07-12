@@ -41,6 +41,10 @@ public abstract class Player implements Comparable<Player> {
         }
     }
 
+    
+    /** 
+     * @param p
+     */
     /**
      * This method is an abstract method called emergencyMeeting.
      * This method will be overridden by any child class and will be used to
