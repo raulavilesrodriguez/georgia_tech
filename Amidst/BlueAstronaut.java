@@ -7,6 +7,8 @@ public class BlueAstronaut extends Player implements Crewmate{
     private static final int DEFAULT_numTasks = 6;
     private static final int DEFAULT_taskSpeed = 10;
 
+    static volatile boolean isInitialized = true;
+
     /*Constructor methods*/
     public BlueAstronaut(String name, int susLevel, int numTasks, int taskSpeed){
         super(name, susLevel);
@@ -47,7 +49,7 @@ public class BlueAstronaut extends Player implements Crewmate{
         }
     }
 
-    public void completeTask(){
+    public synchronized void completeTask(){
         if(this.isFrozen()){
             return;
         } else {
@@ -57,7 +59,8 @@ public class BlueAstronaut extends Player implements Crewmate{
                 this.numTasks -= 1;
             }
             if(this.numTasks < 0) {this.numTasks = 0;}
-            if(this.numTasks == 0){
+            if(this.numTasks == 0 && isInitialized){
+                isInitialized = false;
                 System.out.println("I have completed all my tasks");
                 double newSusLevel = this.getSusLevel() * 0.5;
                 this.setSusLevel((int) newSusLevel);
