@@ -1,9 +1,9 @@
 import java.util.Arrays;
 
-public class RedAstronaut extends Player{
+public class RedAstronaut extends Player implements Impostor{
     private String skill;
-    public static final int DEFAUL_susLevel = 15;
-    public static final String DEFAULT_skill = "experienced";
+    private static final int DEFAULT_susLevel = 15;
+    private static final String DEFAULT_skill = "experienced";
 
     /*Constructor methods*/
     public RedAstronaut(String name, int susLevel, String skill){
@@ -11,10 +11,11 @@ public class RedAstronaut extends Player{
         this.skill = skill;
     }
     public RedAstronaut(String name){
-        super(name, DEFAUL_susLevel);
+        super(name, DEFAULT_susLevel);
         this.skill = DEFAULT_skill;
     }
 
+    /*Methods*/
     void emergencyMeeting(){
         if (this.isFrozen()){
             return;
@@ -45,7 +46,7 @@ public class RedAstronaut extends Player{
     /** 
      * @param p the other player
      */
-    void freeze(Player p){
+    public void freeze(Player p){
         if (this instanceof Impostor && p instanceof Impostor){
             return;
         } else if (this instanceof Impostor && this.isFrozen()){
@@ -67,7 +68,7 @@ public class RedAstronaut extends Player{
     /** 
      * @param p other player
      */
-    void sabotage(Player p){
+    public void sabotage(Player p){
         if (this instanceof Impostor && p instanceof Impostor){
             return;
         } else if (this instanceof Impostor && this.isFrozen()){
@@ -106,7 +107,7 @@ public class RedAstronaut extends Player{
      * @return String
      */
     public String toString(){
-        String string = this.toString() + " I am an " + this.skill + " player";
+        String string = super.toString() + " I am an " + this.skill + " player";
         if (this.getSusLevel() <= 15){
             return string;
         } else {
