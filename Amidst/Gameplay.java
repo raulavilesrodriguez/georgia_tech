@@ -54,6 +54,36 @@ public class Gameplay {
         System.out.println(AngelBlue.toString());
         System.out.println(LiamRed.toString());
         // 11
-        
+        System.out.println("Q11");
+        System.out.println(BobBlue.toString());
+        LiamRed.sabotage(BobBlue);
+        System.out.println(BobBlue.toString());
+        LiamRed.sabotage(BobBlue);
+        System.out.println(BobBlue.toString());
+        // 12
+        System.out.println("Q12");
+        LiamRed.freeze(BobBlue);
+        System.out.println(BobBlue.toString());
+        // 13 Here “Crewmates win!”
+        //System.out.println("Q13");
+        //AngelBlue.emergencyMeeting();
+        //System.out.println(LiamRed.toString());
+        // 14 Here “Impostors win!”
+        System.out.println("Q14");
+        System.out.println(HeathBlue.toString());
+        LiamRed.sabotage(HeathBlue);
+        System.out.println(HeathBlue.toString());
+        LiamRed.sabotage(HeathBlue);
+        System.out.println(HeathBlue.toString());
+        LiamRed.sabotage(HeathBlue);
+        System.out.println(HeathBlue.toString());
+        LiamRed.sabotage(HeathBlue);
+        System.out.println(HeathBlue.toString());
+        LiamRed.sabotage(HeathBlue);
+        System.out.println(HeathBlue.toString());
+        // 15
+        LiamRed.freeze(HeathBlue);
+        System.out.println(HeathBlue.toString());
+
     }
 }
