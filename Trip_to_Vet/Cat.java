@@ -27,7 +27,7 @@ public class Cat extends Pet{
     }
 
     public void speak(){
-        this.speak();
+        super.speak();
         String meow = "meow ";
         for (int i = 0; i < this.miceCaught; i++){
             if(this.getPainLevel() > 5){

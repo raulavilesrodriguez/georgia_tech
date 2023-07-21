@@ -42,7 +42,19 @@ public class Prueba {
 
          System.out.println(numD);
 
-         userInput.close();  
-
+         userInput.close(); 
+         
+        String myStr = "Spots,Dog,6.6,Day 1,1713,1727,0.7,10,Day 3,1240,1245,0.8,4";
+        String [] tokensP = null;
+        tokensP = myStr.split(",");
+        int strLastIndex = 0;
+        int day = 1;
+        System.out.println("String: "+myStr);
+        strLastIndex = myStr.lastIndexOf('D');
+        System.out.println("The last index of character a in the string: "+ myStr.charAt(strLastIndex+4));
+        System.out.println(tokensP[tokensP.length-5]);
+        char we = myStr.charAt(strLastIndex+4);
+        day = Integer.parseInt(String.valueOf(we)) + 1;
+        System.out.println("DIAS: " + day);
     }
 }

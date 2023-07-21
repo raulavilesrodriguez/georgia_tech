@@ -26,7 +26,7 @@ public class Dog extends Pet{
     }
 
     public void speak(){
-        this.speak();
+        super.speak();
         String bark = "bark ";
         for (int i = 0; i < this.getPainLevel(); i++){
             if(this.getPainLevel() > 5){
