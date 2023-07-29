@@ -11,17 +11,33 @@ public class Node <T> {
         this(data, null);
     }
 
+    
+    /** 
+     * @return T
+     */
     /*Methods*/
     public T getData(){
         return data;
     }
+    
+    /** 
+     * @param data
+     */
     public void setData(T data){
         this.data = data;
     }
 
+    
+    /** 
+     * @return Node<T>
+     */
     public Node <T> getNext(){
         return next;
     }
+    
+    /** 
+     * @param next
+     */
     public void setNext(Node <T> next){
         this.next = next;
     }

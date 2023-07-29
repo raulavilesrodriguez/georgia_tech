@@ -11,11 +11,43 @@ public class LinkedList<T> implements List<T> {
         tail = null;
     }
 
+    
+    /** 
+     * @param data
+     * add data to the list
+     */
     /*Methods*/
+    public void add(T data){
+        Node<T> newNode = new Node<T> (data, null);
+        Node<T> current = head;
+        if (isEmpty()){
+            size = 0;
+            tail = null;
+            head = newNode;
+        }
+        else {
+            while (current.getNext() != null){
+                current = current.getNext();
+            }
+            current.setNext(newNode);
+        }
+    }
+
+    
+    /** 
+     * @param data
+     * @param index
+     * @throws IllegalArgumentException
+     * Adds a node to the position specified by index
+     */
     public void addAtIndex(T data, int index) throws IllegalArgumentException{
         Node<T> newNode = new Node<T> (data, null);
+        if (isEmpty()){
+            size = 0;
+            tail = null;
+        }
         if (index < 0 || index >= size()){
-            throw new IllegalArgumentException("Your index is out of the list bounds");
+            throw new IllegalArgumentException("Your index is out of the list bounds" + "size: " + size);
         } else if(data == null) {
             throw new IllegalArgumentException("You cannot add null data to the list");
         } else if (index == 0){
@@ -43,6 +75,13 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
+    
+    /** 
+     * @param index
+     * @return T
+     * @throws IllegalArgumentException
+     * Returns the data located at the specified index in the list
+     */
     public T getAtIndex(int index) throws IllegalArgumentException{
         if (index < 0 || index >= size()){
             throw new IllegalArgumentException("Your index is out of the list bounds");
@@ -58,6 +97,15 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
+    
+    /** 
+     * @param index
+     * @return T
+     * @throws IllegalArgumentException
+     * Removes the data (and the node that stores it) from the 
+     * specified index of the list and returns that data of the 
+     * node that was removed
+     */
     public T removeAtIndex(int index) throws IllegalArgumentException{
         Node<T> removedData;
         Node<T> current = head;
@@ -101,6 +149,15 @@ public class LinkedList<T> implements List<T> {
         return removedData.getData();
     }
 
+    
+    /** 
+     * @param data
+     * @return T
+     * @throws IllegalArgumentException
+     * Removes the first occurrence of the passed data from the 
+     * list (and also remove the node that holds it) and returns 
+     * the data from the removed node
+     */
     public T remove(T data) throws IllegalArgumentException{
         if(isEmpty()){
             throw new IllegalArgumentException("Your list is empty");
@@ -121,47 +178,100 @@ public class LinkedList<T> implements List<T> {
                 i++;
             }
         }
+        if (current == null){
+            throw new NoSuchElementException("The data is not present in the list");
+        }
         T removedData;
         removedData = removeAtIndex(i);
         return removedData;
     }
 
-    // update tail function
-    private void actTail(Node<T> current){
-        while(current.getNext() != null){
-                current = current.getNext();
-            }
-        tail.setData(current.getData());
-        tail.setNext(null);
+    /**
+     * The method clears the LinkedList
+     */
+    public void clear(){
+        head = null;
+        tail = null;
     }
 
+    
+    /** 
+     * @param current
+     */
+    // update tail function
+    private void actTail(Node<T> current){
+        if (isEmpty()){
+            tail = null;
+        } else {
+            while(current.getNext() != null){
+                current = current.getNext();
+            }
+            tail = current;
+        }
+    }
+
+    
+    /** 
+     * @return boolean
+     * Returns a boolean value which represents whether the 
+     * list is empty
+     */
     public boolean isEmpty(){
         return (head == null);
     }
 
+    
+    /** 
+     * @return int
+     * Returns current size of the list
+     */
     public int size(){
         Node<T> current = head;
-        if(isEmpty()){
-            size = 0;
+        size = 0;
+        if (isEmpty()){
             return size;
-        }
-        else{
+        } else {
             while(current.getNext() != null){
-                current = current.getNext();
-                size++;
+            current = current.getNext();
+            size++;
             }
-            return size;
-        }
+            return size + 1; 
+        }   
     }
     
+    
+    /** 
+     * @return Node<T>
+     */
     /*Helpers*/
     public Node<T> getHead(){
-        return head;
+        if (head == null){
+            throw new IllegalArgumentException("Your list is empty. No throw RESULTS BROO");
+        } else {
+            return head;
+        }
     }
     public Node<T> getTail(){
-        return tail;
+        if (tail == null){
+            throw new IllegalArgumentException("Your list is empty. No throw RESULTS MAN");
+        } else{
+            return tail;
+        }   
     }
     public int getSize(){
         return size;
     }
+
+    public String toString(){
+        Node<T> current = head;
+        String result = "";
+
+        while(current != null){
+            result = result + current.getData().toString() + ", ";
+            current = current.getNext();
+        }
+        result = "[" + result.replaceAll(", $", "") + "]";
+        return  result;
+    }
+
 }
